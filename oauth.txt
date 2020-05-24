@@ -1,0 +1,65 @@
+#   Step 1: Create app at Spotify Dashboard and get client id, client secret.
+
+        Client ID: xxx 
+        Client Secret: xxx
+
+
+#   Step 2: Go at your project, edit settings and specify redirect uri. Then url encode it.
+
+        redirect_uri: http://localhost/     url encoded: http%3A%2F%2Flocalhost%2F%0A
+        or 
+        redirect_uri: https://github.com/DeadManLogan       url encoded: https%3A%2F%2Fgithub.com%2FDeadManLogan
+
+
+#   Step 3: Get the scopes you want to use.
+
+        scopes = playlist-modify-public, playlist-modify-private, playlist-read-private
+
+
+#   Step 4: Fill the follow link with the results from above steps.
+
+        https://accounts.spotify.com/authorize?client_id=xxx&response_type=code&redirect_uri=https%3A%2F%2Fgithub.com%2FDeadManLogan&scope=user-read-private%20user-read-email%20playlist-modify-public%20playlist-modify-private%20playlist-read-private&state=34fFs29kd09
+
+
+#   Step 5: Now lets fill the cURL below.
+
+        curl -H "Authorization: Basic ZjM...zE=" -d grant_type=authorization_code -d code=MQCbtKe...44KN -d redirect_uri=https%3A%2F%2Fwww.foo.com%2Fauth https://accounts.spotify.com/api/token
+
+
+#   Step 6: Get the base64 of client id:client secret like below and fill the Authorization element of cURL.
+
+        xxx:xxx
+        base64: xxx=
+
+
+#   Step 7: Run the authorization endpoint on the browser, in other words the link from step 4.
+        
+        Take the code element from the url: code=AQB32Ak5Fr1nySgz8E2PranwZZ7bFQqdTQVT3HlCZWoDGgqZ28CJTMLP93HtsnTrQAdWVKPD6f997JVBunP2koExanlXbPpnLlDMZY-hQDOVwa4F3sDDqc0qgv6npSHUO0HTVyuHHKWOVUJCwA_J2Bx29Wa1NOzX_Ny04lfI0D_PHcWzoLb_C-wKaUgamEtSZj6XrDZO4NHIn-b_zvbESFokQORxUzyGjj4OH6OT5VVCeMb2MiEro8CRbcirp-TWvdP0w2z3FgGLktg6ayQBrBHga5hy_1mn1g1qeDuA2wzNPaLjmlUjNNGqY8FGhluH8l6leKDvqD01acYxB2-ftpA
+
+
+#   Step 8: Now enter it at the corresponding place of the cURL.
+
+        curl -H "Authorization: Basic xxx=" -d grant_type=authorization_code -d code=AQDCuMqrAfDDgHyOb2VThLAok17xuvpWBqmyDnB6R7mJd7OJ-KBF1_GYhy-bSU6n_aWU7KxkMpujzTkuuPR5qQv7epLu495yAPipKSERrIn0GEhfmPu9tS5lPStanXVtcU-nucGiStXnYoLlBrhlsb_P5iYUjLsgnfCgMh8xZmCQIlupVNv1UZfK7KdkQbuXRD45GFtLD7aYZnbNRBZI3VvYfWK3wXKcFWSftj6D98p48f4cwnP1kHCzlo9zzY8Wusde8b9n9V0P6U1fJtwiBYVX3cOADiio8B8ngG0IsD9_wDUzo7arVHVwfGKHjh48C7me796ofrgKQDDsmSRqjV0 -d redirect_uri=https%3A%2F%2Fgithub.com%2FDeadManLogan https://accounts.spotify.com/api/token
+
+
+#   Step 9: Now enter the redirect uri at the corresponding place of the cURL(the encoded part). Run the cURL on the terminal.
+
+        curl -H "Authorization: Basic xxx=" -d grant_type=authorization_code -d code=AQDCuMqrAfDDgHyOb2VThLAok17xuvpWBqmyDnB6R7mJd7OJ-KBF1_GYhy-bSU6n_aWU7KxkMpujzTkuuPR5qQv7epLu495yAPipKSERrIn0GEhfmPu9tS5lPStanXVtcU-nucGiStXnYoLlBrhlsb_P5iYUjLsgnfCgMh8xZmCQIlupVNv1UZfK7KdkQbuXRD45GFtLD7aYZnbNRBZI3VvYfWK3wXKcFWSftj6D98p48f4cwnP1kHCzlo9zzY8Wusde8b9n9V0P6U1fJtwiBYVX3cOADiio8B8ngG0IsD9_wDUzo7arVHVwfGKHjh48C7me796ofrgKQDDsmSRqjV0 -d redirect_uri=https%3A%2F%2Fgithub.com%2FDeadManLogan https://accounts.spotify.com/api/token
+
+
+# Step 10: You should get back something like this.
+{
+    "access_token":"BQD2sVl6tWr9q1-RqpHYt3RuX1_SG5ymeyq-ouA4Tiox9nbmPwk9dTQizEdTdVbkdxakzSi5khgcq9GazupP3NTrc3s3Q85uaVR2PDo0YqX142QP1ti94n1LfTObfs5_l48fhlPRR0VSBFfqRTwKJ1ssW7DVLerZln7x-fsopQDW_nl_YdavMjQD3UDuC0zamb3Bj83sCgdgpQfTs4Uzw5ASj7VRFtxonmRtgANylsRz3razD2dEgOU",
+    "token_type":"Bearer",
+    "expires_in":3600,
+    "refresh_token":"AQCIsxYPJ-dWnJvdylNWt_FXBRddVX-LS5B3g1ggmdWrZpYHoyBgrNHsnGfMxCtAklaoBPr8ToOhx4k4YiYn3VDR0AvpSy7HsmI3r69ZWAb1ocGxcRKrwMBM-rJQXgH9JwY",
+    "scope":"playlist-read-private playlist-modify-private playlist-modify-public user-read-email user-read-private"
+}
+
+{
+        "access_token":"BQBNBfDhOaKEbc-jAmmZVHfHgNzxaXSjQp0QJQFDWYt5T-Z7UsUh_xCu7nMzHctAq6QAE_cJ-luvtnzulm8NoaUqe8VqVbhuW3w__YIPo6Hl3EBU0VcZnBLmRwtvRHlgOEH_oZf3aMimKYSIcU-CyB1Byv1dprtkQgBX0KkYKwYK88BexrbJuMJwrJfQA_J6HD7U49c2Hf8KGYD3kwa8Mu5ZPdk22bqj6o5uGmDRMpm5-gh-S9uDBCo",
+        "token_type":"Bearer",
+        "expires_in":3600,
+        "refresh_token":"AQBi-ZbEj9i7BOlf2c8XTgpkVjKycH0B63dpqT8jycS6SrehCQz0V5IXdIcHvMHViqsRwvo1sowDI23R0QyNKBE9N-FIH_UTslhsWRFEa-qoKfBKXsWwsznFttQoJxDHsCc",
+        "scope":"playlist-read-private playlist-modify-private playlist-modify-public user-read-email user-read-private"
+}

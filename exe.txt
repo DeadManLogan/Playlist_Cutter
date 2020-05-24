@@ -1,0 +1,6 @@
+//what we have to do before executing any script
+
+dimos@dimos-Lenovo-Z51-70:~/Desktop/spotipy-master/examples$ bash 
+dimos@dimos-Lenovo-Z51-70:~/Desktop/spotipy-master/examples$ export SPOTIPY_CLIENT_ID='xxx'
+dimos@dimos-Lenovo-Z51-70:~/Desktop/spotipy-master/examples$ export SPOTIPY_CLIENT_SECRET='xxx'
+dimos@dimos-Lenovo-Z51-70:~/Desktop/spotipy-master/examples$ export SPOTIPY_REDIRECT_URI='xxx'
